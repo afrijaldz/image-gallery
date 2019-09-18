@@ -17,7 +17,8 @@ const upload = multer({
     fileSize: 2048 * 1024,
   },
   fileFilter: function (req, file, cb) {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'pdf') {
+    const allowedType = ['image/jpeg', 'image/png', 'application/pdf']
+    if (allowedType.some(type => type === file.mimetype)) {
       cb(null, true)
     } else {
       cb(new Error('file type not allowed.'))
