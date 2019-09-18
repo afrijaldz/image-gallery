@@ -7,7 +7,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const routes = require('./routes/index')
+const routeNotFound = require('./middleware/RouteNotFoundMiddleWare')
+
 app.use(routes)
+app.use(routeNotFound)
 
 const PORT = process.env.PORT || 9000
 
